@@ -46,15 +46,17 @@ h1 {
 
 .search-bar {
   display: flex;
+  flex-direction: column;
   gap: 10px;
   max-width: 600px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 1rem;
 }
 
 .search-input {
-  flex: 1;
-  padding: 12px 20px;
+  width: 100%;
+  padding: 15px 20px;
   border: none;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
@@ -74,7 +76,8 @@ h1 {
 }
 
 .search-button {
-  padding: 12px 24px;
+  width: 100%;
+  padding: 15px 24px;
   border: none;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
@@ -82,7 +85,6 @@ h1 {
   font-size: 1rem;
   cursor: pointer;
   transition: all 1.5s ease-in-out;
-  backdrop-filter: blur(5px);
 }
 
 .search-button:hover {
@@ -310,36 +312,56 @@ h1 {
 @media (max-width: 768px) {
   .app {
     padding: 1rem;
+    min-height: 100vh;
+    height: auto;
+    justify-content: flex-start;
   }
 
   h1 {
-    font-size: 2rem;
-  }
-
-  .weather-display {
-    grid-template-columns: 1fr;
-  }
-
-  .weather-circle {
-    width: 300px;
-    height: 300px;
-    left: 50%;
-  }
-
-  .temperature {
-    font-size: 4rem;
-  }
-
-  .weather-details {
-    grid-template-columns: 1fr;
+    font-size: 1.8rem;
+    margin: 1rem 0;
   }
 
   .search-bar {
-    flex-direction: column;
+    padding: 0 0.5rem;
   }
 
+  .search-input,
   .search-button {
-    width: 100%;
+    padding: 12px;
+  }
+
+  .history-items {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .history-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0.8rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-input,
+  .search-button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .history-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 60px;
   }
 }
 
@@ -397,4 +419,40 @@ h1 {
 .weather-background > div {
   width: 100%;
   height: 100%;
+}
+
+.history-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.history-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(5px);
+  min-width: 80px;
+  text-align: center;
+}
+
+@media (hover: none) {
+  .search-button:active,
+  .history-item:active {
+    transform: translateY(1px);
+    transition: transform 0.1s ease-out;
+  }
+
+  .search-input,
+  .search-button,
+  .history-item {
+    -webkit-tap-highlight-color: transparent;
+  }
 }

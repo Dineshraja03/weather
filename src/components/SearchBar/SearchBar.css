@@ -77,4 +77,30 @@
 .history-item:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .search-input,
+  .search-button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .search-button:active {
+    transform: translateY(1px);
+  }
+
+  .history-item {
+    padding: 0.8rem 1.2rem;
+    margin: 0.3rem;
+  }
+
+  .history-item:active {
+    transform: translateY(1px);
+  }
 } 

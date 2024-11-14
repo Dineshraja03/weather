@@ -1,0 +1,27 @@
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.detail-label {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.detail-value {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+} 

@@ -16,53 +16,53 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   transition: all 1.5s ease-in-out;
   background: var(--gradient-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .app {
   width: 100%;
   max-width: 1200px;
-  padding: 2rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
-  height: 100vh;
-  justify-content: center;
 }
 
 h1 {
   color: var(--text-color);
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.search-bar {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 600px;
-  margin: 0 auto;
-  width: 100%;
+.search-container {
+  width: min(95%, 600px);
+  margin: 1rem auto;
   padding: 0 1rem;
 }
 
-.search-input {
+.search-bar {
+  display: flex;
+  gap: 1rem;
   width: 100%;
-  padding: 15px 20px;
-  border: none;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 1px solid #000;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   color: var(--text-color);
   font-size: 1rem;
-  transition: all 1.5s ease-in-out;
+  backdrop-filter: blur(5px);
 }
 
 .search-input::placeholder {
@@ -76,20 +76,35 @@ h1 {
 }
 
 .search-button {
-  width: 100%;
-  padding: 15px 24px;
+  padding: 12px 24px;
   border: none;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-color);
-  font-size: 1rem;
+  background: #1a73e8;
+  color: white;
   cursor: pointer;
-  transition: all 1.5s ease-in-out;
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+  min-width: 100px;
+  transition: all 0.2s ease;
+  outline: none;
 }
 
 .search-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #1557b0;
   transform: translateY(-1px);
+}
+
+.search-button:active {
+  transform: scale(0.98) translateY(1px);
+  background: #1557b0;
+  padding: 10px 22px;
+  outline: none;
+  border: none;
+}
+
+.search-button:focus {
+  outline: none;
+  border: none;
 }
 
 .error {
@@ -310,25 +325,39 @@ h1 {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .app {
-    padding: 1rem;
-    min-height: 100vh;
-    height: auto;
-    justify-content: flex-start;
+  body {
+    overflow-y: auto;
   }
 
-  h1 {
-    font-size: 1.8rem;
-    margin: 1rem 0;
+  .app {
+    padding: 1rem 0.5rem;
+    min-height: auto;
+  }
+
+  .search-container {
+    width: 90%;
+    padding: 0;
   }
 
   .search-bar {
-    padding: 0 0.5rem;
+    flex-direction: row;
+    gap: 0.5rem;
   }
 
-  .search-input,
+  .search-input {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-width: 1px;
+  }
+
   .search-button {
-    padding: 12px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    min-width: 80px;
+  }
+
+  .search-button:active {
+    padding: 7px 15px;
   }
 
   .history-items {
@@ -340,12 +369,29 @@ h1 {
     padding: 0.6rem 1rem;
     font-size: 0.85rem;
     min-width: 70px;
+    border-width: 1px;
   }
 }
 
 @media (max-width: 480px) {
   .app {
-    padding: 0.8rem;
+    padding: 1rem;
+  }
+
+  .search-container {
+    width: 95%;
+  }
+
+  .search-bar {
+    flex-direction: row;
+  }
+
+  .search-input {
+    flex: 1;
+  }
+
+  .search-button {
+    width: auto;
   }
 
   h1 {
@@ -431,13 +477,13 @@ h1 {
 
 .history-item {
   background: rgba(255, 255, 255, 0.1);
-  border: none;
+  border: 1px solid #000;
   padding: 0.8rem 1.2rem;
   border-radius: 20px;
   color: var(--text-color);
   cursor: pointer;
   font-size: 0.9rem;
-  transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s ease;
   backdrop-filter: blur(5px);
   min-width: 80px;
   text-align: center;
@@ -455,4 +501,12 @@ h1 {
   .history-item {
     -webkit-tap-highlight-color: transparent;
   }
+}
+
+.search-history h3 {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  opacity: 0.8;
+  font-weight: normal;
 }
